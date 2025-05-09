@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Scroll Animatie zonder fade</title>
+  <style>
+    /* Zorg dat de pagina genoeg ruimte biedt om te scrollen */
+    body {
+      height: 3000px;
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+    
+    /* Titel die vanaf de bovenkant in beeld komt */
+    #title {
+      position: fixed;
+      top: -200px;
+      left: 50%;
+      transform: translateX(-50%);
+      transition: top 0.5s ease-in-out;
+      font-size: 40px;
+      padding: 10px 20px;
+      background-color: #000;
+      color: #fff;
+      border-radius: 4px;
+    }
+    #title.visible {
+      top: 10px;
+    }
+	  #titel {
+				top: -200px;
+                font-family: "futura";
+				transform: translateX(-50%);
+   			    transition: top 0.5s ease-in-out;
+                position: absolute;
+                top: 0px;
+                z-index: 1;
+                color: #333;
+                cursor: text;
+                font-size: 8vh;
+                margin-left: -45vw;
+                margin-top: 4vh;
+            }   
+  </style>
+</head>
+<body>
+
+  <h1 id="title">LS-STUDIO</h1>
+
+  <script>
+    // Stel de drempelwaarde in waarop de animatie moet starten (bijvoorbeeld na 500 pixels scrollen)
+    const scrollThreshold = 100;
+    const title = document.getElementById('title');
+
+    window.addEventListener('scroll', function() {
+      if (window.pageYOffset > scrollThreshold) {
+        title.classList.add('visible');
+      } else {
+        title.classList.remove('visible');
+      }
+    });
+  </script>
+</body>
+</html>
