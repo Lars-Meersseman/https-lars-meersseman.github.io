@@ -12,14 +12,14 @@
 <body>   
     <div id="titel">LS-Studio</div>
     <div id="cursor-circle"></div>
-    <div class="intro-section">
+   <!-- <div class="intro-section">
         <div class="video">
         <video autoplay muted width="575" style="margin-top:0vh;">
           <source src="animations/introcomp.mp4" type="video/mp4">
           Your browser does not support the animation :/
         </video>
         </div>
-    </div>
+    </div>-->
     <div id="containerhamburger">
         <nav class="navbar">
             <input type="checkbox" class="hamburger-checkbox" id="hamburger-checkbox">
@@ -114,7 +114,7 @@
     </div>
 
     <script>
-       document.addEventListener('DOMContentLoaded', () => {
+     /*  document.addEventListener('DOMContentLoaded', () => {
     const container = document.querySelector('.tab-container');
     const tabs = document.querySelectorAll('.tab');
     const introSection = document.querySelector('.intro-section');
@@ -133,7 +133,7 @@
         cursorCircle.style.display = 'block';
         tabs.forEach(tab => tab.classList.add('tab--visible'));
     });
-
+*/
     // Debounce functie om scroll-gebeurtenissen te beperken
     let isScrolling = false;
     const debounceScroll = (callback) => {
