@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Probeersel</title>
+    <style>
+    </style>
+    <link href="styles.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>   
+    <div id="titel">LS-Studio</div>
+    <div id="containerhamburger">
+        <nav class="navbar">
+            <input type="checkbox" class="hamburger-checkbox" id="hamburger-checkbox">
+            <label for="hamburger-checkbox" class="hamburger-label">
+                <span class="line line1"></span>
+                <span class="line line3"></span>
+            </label>
+            <ul class="menu-items">
+                <li><a href="Landing.html">Portfolio</a></li>
+                <div class="thinline"></div>
+                <li><a href="aboutus.html">About Us</a></li>
+                <div class="thinline"></div>
+                <li><a href="contact.html">Contact</a></li>
+                <div class="social-icons">
+                    <img src="icons/insta.png" alt="instagram">
+                    <img src="icons/x.webp" alt="X">
+                </div>
+            </ul>
+        </nav>
+    </div> 
+
+    <div class="tab-container">
+		
+		
+		
+		
+		<h2 id="text1">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus egestas placerat nibh, eu facilisis ligula viverra a. Donec feugiat felis vel ultricies efficitur. Cras bibendum nec nisi vitae semper. Cras fringilla lectus vel dui commodo, eget efficitur risus iaculis. In hendrerit mollis gravida. Aenean posuere justo cursus sem posuere, sed <br>bibendum velit volutpat. Sed feugiat efficitur sem ut.
+ </h2>
+		<video autoplay loop muted width="575" style="margin-top:55vh; width:100%;">
+          <source src="animations/fullcomp.mp4" type="video/mp4">
+          Your browser does not support the animation :/
+        </video>
+        <div class="container2"></div>
+        <a href="comic.html">
+            <div class="tab" style="z-index:1;">
+                <div class="tab-header">Comic</div>
+                <div class="tab-content">
+                    <img class="images" src="display/comic.png" alt="Comic pagina">
+                </div>
+            </div>
+        </a>
+        <a href="comic.html">
+            <div class="tab" style="z-index:2;">
+                <div class="tab-header">Parody LP</div>
+                <div class="tab-content">
+                    <img class="images" src="display/cover.png" alt="Comic pagina">
+                </div>
+            </div>
+        </a>
+        <a href="comic.html">
+            <div class="tab" style="z-index:3;">
+                <div class="tab-header">Live Photography</div>
+                <div class="tab-content">
+                    <img class="images" src="display/photos.png" alt="Comic pagina">
+                </div>
+            </div>
+        </a>
+        <a href="#">
+            <div class="tab" style="z-index:4;">
+                <div class="tab-header">Placeholder</div>
+                <div class="tab-content">
+                    <img class="images" src="display/placeholder.png" alt="Comic pagina">
+                </div>
+            </div>
+        </a>
+        <a href="#">
+            <div class="tab" style="z-index:4;">
+                <div class="tab-header">Placeholder</div>
+                <div class="tab-content">
+                    <img class="images" src="display/placeholder.png" alt="Comic pagina">
+                </div>
+            </div>
+        </a>
+        <a href="#">
+            <div class="tab" style="z-index:4;">
+                <div class="tab-header">Placeholder</div>
+                <div class="tab-content">
+                    <img class="images" src="display/placeholder.png" alt="Comic pagina">
+                </div>
+            </div>
+        </a>
+        <a href="#">
+            <div class="tab" style="z-index:4;">
+                <div class="tab-header">Laatste tab</div>
+                <div class="tab-content">
+                </div>
+            </div>
+        </a>
+        <div class="extraplace"></div>
+    </div>
+
+    <script>
+       document.addEventListener('DOMContentLoaded', () => {
+    const container = document.querySelector('.tab-container');
+    const tabs = document.querySelectorAll('.tab');
+    const introSection = document.querySelector('.intro-section');
+    const title = document.querySelector('#titel');
+    const navbar = document.querySelector('.navbar');
+    const cursorCircle = document.querySelector('#cursor-circle');
+    const video = document.querySelector('video'); // Selecteer het video element
+
+    // Wacht tot de video is afgelopen om de intro-section te verbergen en de animatie te starten
+    video.addEventListener('ended', () => {
+        introSection.classList.add('intro-section--hidden');
+        document.body.style.backgroundColor = '#F0F0F0';
+        container.classList.add('slide-up'); // Start de schuif-animatie voor de container
+        title.classList.add('titel-visible'); // Laat de titel meeschuiven
+        navbar.classList.add('navbar--visible');
+        cursorCircle.style.display = 'block';
+        tabs.forEach(tab => tab.classList.add('tab--visible'));
+    });
+
+    // Debounce functie om scroll-gebeurtenissen te beperken
+    let isScrolling = false;
+    const debounceScroll = (callback) => {
+        if (!isScrolling) {
+            isScrolling = true;
+            requestAnimationFrame(() => {
+                callback();
+                isScrolling = false;
+            });
+        }
+    };
+
+    // Scroll logica
+    const handleScroll = () => {
+        const scrollTop = container.scrollTop;
+        const containerHeight = container.clientHeight;
+        const scrollHeight = container.scrollHeight;
+        const threshold = 50;
+
+        // Vind de bovenste tab die momenteel in beeld is
+        let topmostTab = null;
+        let minTop = Infinity;
+
+        tabs.forEach(tab => {
+            const tabTop = tab.offsetTop - scrollTop;
+            if (tabTop < minTop && tabTop > -tab.clientHeight) {
+                minTop = tabTop;
+                topmostTab = tab;
+            }
+        });
+
+        // Pas de positie van de titel aan
+        if (topmostTab) {
+            const titleHeight = title.offsetHeight;
+            const tabTop = topmostTab.offsetTop - scrollTop;
+            const titleBottom = titleHeight + 20 * window.innerHeight / 100;
+
+            // Als de bovenste tab de onderkant van de titel nadert, duw de titel omhoog
+            if (tabTop < titleBottom + 20) {
+                const pushUpDistance = titleBottom - tabTop + 20;
+                title.style.transform = `translateY(-${pushUpDistance}px)`;
+            } else {
+                title.style.transform = 'translateY(0)';
+            }
+        } else {
+            title.style.transform = 'translateY(0)';
+        }
+
+        // Detecteer het einde van de scroll en reset de titel
+        if (scrollHeight - scrollTop - containerHeight < threshold) {
+            title.style.transform = 'translateY(0)';
+        }
+
+        // Bestaande logica voor tab centering
+        let closestTab = null;
+        let minDistanceFromCenter = Infinity;
+        let closestTabIndex = -1;
+
+        tabs.forEach((tab, index) => {
+            const tabTop = tab.offsetTop - scrollTop;
+            const tabCenter = tabTop + tab.clientHeight / 2;
+            const screenCenter = containerHeight / 2;
+            const distanceFromCenter = Math.abs(tabCenter - screenCenter);
+
+            if (distanceFromCenter < minDistanceFromCenter) {
+                minDistanceFromCenter = distanceFromCenter;
+                closestTab = tab;
+                closestTabIndex = index;
+            }
+        });
+
+        tabs.forEach((tab, index) => {
+            const tabTop = tab.offsetTop - scrollTop;
+            const tabCenter = tabTop + tab.clientHeight / 2;
+            const screenCenter = containerHeight / 2;
+            const distanceFromCenter = Math.abs(tabCenter - screenCenter);
+
+            const scale = Math.max(1, 1 - distanceFromCenter / containerHeight);
+            const opacity = Math.max(1, 1 - distanceFromCenter / containerHeight);
+
+            tab.classList.remove('tab--centered');
+
+            const isAbove = index < closestTabIndex;
+            const isBelow = index > closestTabIndex;
+
+            if (tab === closestTab) {
+                tab.classList.add('tab--centered');
+                tab.style.transform = `rotateX(0deg) scale(${scale}) translateY(150px)`;
+            } else {
+                let translateYValue = 0;
+                if (isAbove) {
+                    translateYValue = -150;
+                } else if (isBelow) {
+                    translateYValue = 300;
+                }
+                tab.style.transform = `rotateX(-40deg) scale(${scale}) translateY(${translateYValue}px)`;
+            }
+
+            tab.style.opacity = opacity;
+        });
+    };
+
+    // Gebruik debounce voor de scroll-eventlistener
+    container.addEventListener('scroll', () => {
+        debounceScroll(handleScroll);
+    });
+
+    container.scrollTop = 0;
+});
+
+// Cursor circle
+const circle = document.getElementById('cursor-circle');
+document.addEventListener('mousemove', (e) => {
+    circle.style.left = e.clientX + 'px';
+    circle.style.top = e.clientY + 'px';
+
+    const target = e.target;
+    const computedStyle = window.getComputedStyle(target);
+    const cursorStyle = computedStyle.cursor;
+
+    if (cursorStyle === 'text') {
+        circle.classList.add('text-select');
+    } else {
+        circle.classList.remove('text-select');
+    }
+});
+    </script>
+</body>
+</html>
