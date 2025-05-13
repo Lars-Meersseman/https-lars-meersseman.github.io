@@ -2,24 +2,15 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>LS-STUDIO</title>
-    <style>
+    <title>Probeersel</title>
+<style>
     
     </style>
-<link href="styles.css" rel="stylesheet" type="text/css">
+    <link href="styles.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>   
     <div id="titel">LS-Studio</div>
-    <div id="cursor-circle"></div>
-   <!-- <div class="intro-section">
-        <div class="video">
-        <video autoplay muted width="575" style="margin-top:0vh;">
-          <source src="animations/introcomp.mp4" type="video/mp4">
-          Your browser does not support the animation :/
-        </video>
-        </div>
-    </div>-->
     <div id="containerhamburger">
         <nav class="navbar">
             <input type="checkbox" class="hamburger-checkbox" id="hamburger-checkbox">
@@ -30,7 +21,7 @@
             <ul class="menu-items">
                 <li><a href="Landing.html">Portfolio</a></li>
                 <div class="thinline"></div>
-                <li><a href="about-us.html">About Us</a></li>
+                <li><a href="aboutus.html">About Us</a></li>
                 <div class="thinline"></div>
                 <li><a href="contact.html">Contact</a></li>
                 <div class="social-icons">
@@ -42,16 +33,17 @@
     </div> 
 
     <div class="tab-container">
-		<h2 id="text1">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus egestas placerat nibh, eu facilisis ligula viverra a. Donec feugiat felis vel ultricies efficitur. Cras bibendum nec nisi vitae semper. Cras fringilla lectus vel dui commodo, eget efficitur risus iaculis. In hendrerit mollis gravida. Aenean posuere justo cursus sem posuere, sed <br>bibendum velit volutpat. Sed feugiat efficitur sem
+		
+		
+		
+		
+		<h2 id="text1">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus egestas placerat nibh, eu facilisis ligula viverra a. Donec feugiat felis vel ultricies efficitur. Cras bibendum nec nisi vitae semper. Cras fringilla lectus vel dui commodo, eget efficitur risus iaculis. In hendrerit mollis gravida. Aenean posuere justo cursus sem posuere, sed <br>bibendum velit volutpat. Sed feugiat efficitur sem ut.
  </h2>
 		<video autoplay loop muted width="575" style="margin-top:55vh; width:100%;">
           <source src="animations/fullcomp.mp4" type="video/mp4">
           Your browser does not support the animation :/
         </video>
-		
-        <div class="container2">
-			<div id="kijkeens">Neem eens een kijkje naar onze projecten</div>
-		</div>
+        <div class="container2"></div>
         <a href="comic.html">
             <div class="tab" style="z-index:1;">
                 <div class="tab-header">Comic</div>
@@ -60,7 +52,7 @@
                 </div>
             </div>
         </a>
-        <a href="lp.html">
+        <a href="comic.html">
             <div class="tab" style="z-index:2;">
                 <div class="tab-header">Parody LP</div>
                 <div class="tab-content">
@@ -78,7 +70,7 @@
         </a>
         <a href="#">
             <div class="tab" style="z-index:4;">
-                <div class="tab-header">Zenzo</div>
+                <div class="tab-header">Placeholder</div>
                 <div class="tab-content">
                     <img class="images" src="display/placeholder.png" alt="Comic pagina">
                 </div>
@@ -104,9 +96,6 @@
             <div class="tab" style="z-index:4;">
                 <div class="tab-header">Laatste tab</div>
                 <div class="tab-content">
-					<div id="laatstediv">BEKIJK MEER...
-					
-					</div>
                 </div>
             </div>
         </a>
@@ -114,7 +103,7 @@
     </div>
 
     <script>
-     /*  document.addEventListener('DOMContentLoaded', () => {
+       document.addEventListener('DOMContentLoaded', () => {
     const container = document.querySelector('.tab-container');
     const tabs = document.querySelectorAll('.tab');
     const introSection = document.querySelector('.intro-section');
@@ -133,7 +122,7 @@
         cursorCircle.style.display = 'block';
         tabs.forEach(tab => tab.classList.add('tab--visible'));
     });
-*/
+
     // Debounce functie om scroll-gebeurtenissen te beperken
     let isScrolling = false;
     const debounceScroll = (callback) => {
@@ -242,23 +231,6 @@
     });
 
     container.scrollTop = 0;
-});
-
-// Cursor circle
-const circle = document.getElementById('cursor-circle');
-document.addEventListener('mousemove', (e) => {
-    circle.style.left = e.clientX + 'px';
-    circle.style.top = e.clientY + 'px';
-
-    const target = e.target;
-    const computedStyle = window.getComputedStyle(target);
-    const cursorStyle = computedStyle.cursor;
-
-    if (cursorStyle === 'text') {
-        circle.classList.add('text-select');
-    } else {
-        circle.classList.remove('text-select');
-    }
 });
     </script>
 </body>

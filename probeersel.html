@@ -39,7 +39,7 @@
             background-color: #F0F0F0;
             line-height: 1;
             margin: 0;
-            height: 300vh;
+            height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -370,24 +370,6 @@
                 display: flex;
                 gap: 100px;
             } 
-            .intro-section {
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100vh;
-                background: black;
-                z-index: 10000;
-                opacity: 1; 
-                transition: opacity 5s ease;
-            }
-
-            .intro-section--hidden {
-                opacity: 0;
-                display: none;
-            }
-            /* Bestaande CSS blijft grotendeels hetzelfde, voeg deze aanpassingen toe */
-
 .tab-container {
     z-index: 0;
     width: 100%;
@@ -403,12 +385,6 @@
     transform: translateY(100vh); /* Startpositie: onderaan het scherm */
     transition: transform 1s ease; /* Vloeiende animatie van 1 seconde */
 }
-
-.tab-container.slide-up {
-    transform: translateY(0); /* Eindpositie: normaal bovenaan */
-}
-
-/* Zorg ervoor dat andere elementen (zoals #titel) ook meeschuiven */
 #titel {
     font-family: "futura";
     position: absolute;
@@ -421,12 +397,7 @@
     margin-top: 4vh;
     transition: transform 0.5s ease;
     background-color: #F0F0F0;
-    transform: translateY(100vh); /* Startpositie: onderaan meeschuiven */
-}
-
-#titel.titel-visible {
-    transform: translateY(0); /* Eindpositie: normaal bovenaan */
-}  
+			}
         }
 		#text1{
 			margin-top:30vh;
@@ -452,21 +423,12 @@
             .col-12 {width: 100%;}
 
             /* DESKTOP code binnen deze accolades van het @media stuk */
-        }
+        } 
     </style>
 </head>
 
 <body>   
     <div id="titel">LS-Studio</div>
-    <div id="cursor-circle"></div>
-    <div class="intro-section">
-        <div class="video">
-        <video autoplay muted width="575" style="margin-top:0vh; width:80%; margin-left:10vw;">
-          <source src="animations/Introphone.mp4" type="video/mp4">
-          Your browser does not support the animation :/
-        </video>
-        </div>
-    </div>
     <div id="containerhamburger">
         <nav class="navbar">
             <input type="checkbox" class="hamburger-checkbox" id="hamburger-checkbox">

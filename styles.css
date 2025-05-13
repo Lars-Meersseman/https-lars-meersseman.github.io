@@ -33,7 +33,7 @@
             background-color: #F0F0F0;
             line-height: 1;
             margin: 0;
-            height: 300vh;
+            height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -111,7 +111,19 @@
         }
 
         /* Voor MOBIEL */
-       
+        @media only screen and (max-width: 600px) {
+            .col-m-1 {width: 8.33%;}
+            .col-m-2 {width: 16.66%;}
+            .col-m-3 {width: 25%;}
+            .col-m-4 {width: 33.33%;}
+            .col-m-5 {width: 41.66%;}
+            .col-m-6 {width: 50%;}
+            .col-m-7 {width: 58.33%;}
+            .col-m-8 {width: 66.66%;}
+            .col-m-9 {width: 75%;}
+            .col-m-10 {width: 83.33%;}
+            .col-m-11 {width: 91.66%;}
+            .col-m-12 {width: 100%;}
 
             /* MOBIELE code binnen deze accolades van het @media stuk */
             * {
@@ -157,6 +169,8 @@
             body {
                 margin: 0;
                 display: flex;
+                justify-content: center;
+                align-items: center;
                 background: #F0F0F0;
                 overflow-x: hidden;
             }
@@ -172,6 +186,7 @@
                 margin: 50px auto;
                 background: #fff;
                 border-radius: 10px;
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
                 transform: rotateX(-40deg);
                 transition: transform 0.8s ease, opacity 0.8s ease;
                 scroll-snap-align: center;
@@ -183,9 +198,9 @@
             }
 
             .container2 {
-				margin-top:-50vh;
                 height: 50vh;
                 background: #F0F0F0;
+                scroll-snap-align: start;
             }
 
             .tab-header {
@@ -214,24 +229,15 @@
                 background: linear-gradient(to bottom, rgba(0, 0, 0, 0.1), transparent);
                 pointer-events: none;
             }
-			#kijkeens{
-				font-family: futura;
-				font-size: 3vw;
-				text-align:center;
-				margin-left:21vw;
-				margin-top:51vh;
-				position:absolute;
-			}
+
             .images {
                 border-top-left-radius: 0px;
                 border-top-right-radius: 0px;
                 border-bottom-right-radius: 10px;
                 border-bottom-left-radius: 10px;
-                width:69.6vw;
-				float:center;
-				box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+                width: 80vw;
                 margin-top: -3vh;
-                margin-left: -3.5vw;
+                margin-left: -4vw;
             }
 
             .extraplace {
@@ -358,23 +364,6 @@
                 display: flex;
                 gap: 100px;
             } 
-            .intro-section {
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100vh;
-                background: black;
-                z-index: 10000;
-                opacity: 1; 
-                transition: opacity 5s ease;
-            }
-
-            .intro-section--hidden {
-                opacity: 0;
-                display: none;
-            }
-
 .tab-container {
     z-index: 0;
     width: 100%;
@@ -387,14 +376,9 @@
     scrollbar-width: none;
     padding-top: 0;
     padding-bottom: 100px;
-    transform: translateY(100vh);
-    transition: transform 1s ease; 
+    transform: translateY(100vh); /* Startpositie: onderaan het scherm */
+    transition: transform 1s ease; /* Vloeiende animatie van 1 seconde */
 }
-
-.tab-container.slide-up {
-    transform: translateY(0);
-}
-
 #titel {
     font-family: "futura";
     position: absolute;
@@ -403,17 +387,12 @@
     color: #333;
     cursor: text;
     font-size: 8vh;
-    margin-left: -35vw;
+    margin-left: -45vw;
     margin-top: 4vh;
     transition: transform 0.5s ease;
     background-color: #F0F0F0;
-    transform: translateY(100vh);
-}
-
-#titel.titel-visible {
-    transform: translateY(0)
-}  
-        
+			}
+        }
 		#text1{
 			margin-top:30vh;
 			font-size:2.5vh;
@@ -422,11 +401,20 @@
 			position:absolute;
 			
 		}
-#laatstediv{
-	font-size:3vh;
-	font-family: futura;
-	text-align: center;
-	text-decoration:none;
-	color:#333;
-}
-    
+        /* Voor DESKTOP */
+        @media only screen and (min-width: 601px) {
+            .col-1 {width: 8.33%;}
+            .col-2 {width: 16.66%;}
+            .col-3 {width: 25%;}
+            .col-4 {width: 33.33%;}
+            .col-5 {width: 41.66%;}
+            .col-6 {width: 50%;}
+            .col-7 {width: 58.33%;}
+            .col-8 {width: 66.66%;}
+            .col-9 {width: 75%;}
+            .col-10 {width: 83.33%;}
+            .col-11 {width: 91.66%;}
+            .col-12 {width: 100%;}
+
+            /* DESKTOP code binnen deze accolades van het @media stuk */
+        }
