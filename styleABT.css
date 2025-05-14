@@ -303,7 +303,6 @@ input[type=checkbox]:checked ~ label > img {
         .tab--centered {
             z-index: 10;
         }
-
         .container2 {
             height: 50vh;
             background: #333;
