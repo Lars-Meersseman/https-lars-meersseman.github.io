@@ -66,7 +66,7 @@
             float: left;
             width: 100%;
             /* Ter demonstratie hebben kolommen een border, doe maar weg voor je eigen werk */
-            border: solid 1px #F0F0F0;
+            border: solid 1px grey;
         }
 
         /* Voor MOBIEL */
@@ -93,8 +93,14 @@ input[type=checkbox] {
   cursor: pointer;
 	margin-top:10vh;
 	
-}
-
+			}
+			#text1{
+			margin-top:14vh;
+			font-size:2vh;
+			font-family: futura;
+			text-align:center;
+			
+		}
 input[type=checkbox]:checked ~ label > img {
   transform: scale(1.5);
   cursor: pointer;
@@ -264,6 +270,80 @@ input[type=checkbox]:checked ~ label > img {
 				font-family:futura;
 				text-align: center;
 			}
+			.tab-container {
+            width: 100%;
+            height: 200vh;
+            perspective: 1500px;
+            overflow-y: auto;
+            scroll-snap-type: y proximity;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+            padding-top: 100px;
+            padding-bottom: 100px;
+        }
+
+        .tab-container::-webkit-scrollbar {
+            display: none;
+        }
+
+        .tab {
+            width: 80%;
+            max-width: 400px;
+            height: 200px;
+            margin: -100px auto;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+            transform: rotateX(-40deg);
+            transition: transform 0.5s ease, opacity 0.5s ease;
+            scroll-snap-align: center;
+            position: relative;
+        }
+
+        .tab--centered {
+            z-index: 10;
+        }
+
+        .container2 {
+            height: 50vh;
+            background: #333;
+        }
+
+        .tab-header {
+            background: #f5f5f5;
+            padding: 10px;
+            font-weight: bold;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .tab-content {
+            padding: 20px;
+            color: #333;
+        }
+
+        .tab::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.1), transparent);
+            pointer-events: none;
+        }
+
+        .images {
+            border-radius: 10px;
+            width: 69.8vw;
+            margin-top: -3vh;
+            margin-left: -3.5vw;
+        }
+
+        .extraplace {
+            height: 10vh;
+            width: 1vw;
+            margin-top: 300vh;
+        }
 }
 
         /* Voor DESKTOP */
