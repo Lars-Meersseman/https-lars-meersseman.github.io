@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
 <head>
-<link href="styleABT.css" rel="stylesheet" type="text/css">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <meta charset="UTF-8">
 	<style>
 	@charset "UTF-8";
@@ -107,6 +107,7 @@ input[type=checkbox] {
 			text-align:center;
 			
 		}
+			
 input[type=checkbox]:checked ~ label > img {
   transform: scale(1.5);
   cursor: pointer;
@@ -278,14 +279,18 @@ input[type=checkbox]:checked ~ label > img {
 			}
 			.tab-container {
     width: 100%;
-    height: 100vh; /* Volledige hoogte van viewport */
-    perspective: 1000px; /* Sterker 3D-effect */
-    overflow-y: auto;
+    height: 100vh;
+    -webkit-perspective: 1000px; /* Vendor prefix voor iOS */
+    perspective: 1000px;
+    overflow-y: scroll; /* Gebruik scroll i.p.v. auto voor iOS */
+    -webkit-overflow-scrolling: touch; /* Soepel scrollen op iOS */
     scroll-snap-type: y proximity;
-    scrollbar-width: none; /* Verberg scrollbar */
+    -webkit-scroll-snap-type: y proximity; /* Fallback voor oudere Safari */
+    scrollbar-width: none;
     -ms-overflow-style: none;
     padding: 50px 0;
-    background: linear-gradient(to bottom, #e0e0e0, #f5f5f5); /* Safari-achtige achtergrond */
+    background: linear-gradient(to bottom, #e0e0e0, #f5f5f5);
+    -webkit-tap-highlight-color: transparent; /* Voorkom highlight bij tikken */
 }
 
 .tab-container::-webkit-scrollbar {
@@ -293,31 +298,83 @@ input[type=checkbox]:checked ~ label > img {
 }
 
 .tab {
-    width: 80%;
-    max-width: 500px; /* Iets bredere tabs voor desktop */
-    height: 300px; /* Grotere tabs voor meer inhoud */
-    margin: 20px auto; /* Ruimte tussen tabs */
+    width: 90%; /* Kleiner voor iPhone-schermen */
+    max-width: 400px;
+    height: 250px; /* Kleiner voor betere pasvorm */
+    margin: 15px auto;
     background: #fff;
     border-radius: 12px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3), 0 2px 4px rgba(0, 0, 0, 0.2);
-    transform: rotateX(20deg) translateZ(0); /* Basisrotatie voor 3D-effect */
-    transition: transform 0.6s ease, opacity 0.6s ease, translate 0.6s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Lichtere schaduw voor prestaties */
+    -webkit-transform: rotateX(20deg) translateZ(0); /* Vendor prefix */
+    transform: rotateX(20deg) translateZ(0);
+    -webkit-transition: -webkit-transform 0.6s ease, opacity 0.6s ease; /* iOS compatibiliteit */
+    transition: transform 0.6s ease, opacity 0.6s ease;
     scroll-snap-align: center;
     position: relative;
     overflow: hidden;
+    -webkit-backface-visibility: hidden; /* Voorkom flikkering */
+    backface-visibility: hidden;
 }
 
 .tab-header {
-    background: linear-gradient(to bottom, #f8f8f8, #e8e8e8); /* Safari-tab header */
-    padding: 15px;
+    background: linear-gradient(to bottom, #f8f8f8, #e8e8e8);
+    padding: 12px;
     font-family: Futura, sans-serif;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     font-weight: bold;
     color: #333;
     border-bottom: 1px solid #ccc;
     text-align: center;
 }
 
+.tab-content {
+    padding: 0;
+    height: calc(100% - 44px); /* Aangepast voor header-hoogte */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.images {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 0 0 12px 12px;
+    -webkit-user-drag: none; /* Voorkom slepen van afbeeldingen */
+}
+
+.tab::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.15), transparent);
+    pointer-events: none;
+}
+
+    .tab {
+        width: 85%;
+        height: 200px; /* Nog kleiner voor kleine iPhones */
+        margin: 10px auto;
+    }
+
+    .tab-header {
+        font-size: 1rem;
+        padding: 8px;
+    }
+
+    .tab-container {
+        padding: 30px 0;
+    }
+
+@media only screen and (min-width: 1051px) {
+    .tab {
+        max-width: 500px;
+        height: 300px;
+    }
+}
 .tab-content {
     padding: 0;
     height: calc(100% - 50px); /* Hoogte minus header */
@@ -342,31 +399,6 @@ input[type=checkbox]:checked ~ label > img {
     height: 100%;
     background: linear-gradient(to bottom, rgba(255, 255, 255, 0.2), transparent); /* Lichte reflectie */
     pointer-events: none;
-}
-
-/* Responsieve aanpassingen */
-@media only screen and (max-width: 1050px) {
-    .tab {
-        width: 90%;
-        height: 250px;
-        margin: 15px auto;
-    }
-
-    .tab-header {
-        font-size: 1.2rem;
-        padding: 10px;
-    }
-}
-
-@media only screen and (min-width: 1051px) {
-    .tab-container {
-        padding: 100px 0;
-    }
-
-    .tab {
-        max-width: 600px;
-        height: 350px;
-    }
 }
 
         .images {
