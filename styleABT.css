@@ -66,7 +66,7 @@
             float: left;
             width: 100%;
             /* Ter demonstratie hebben kolommen een border, doe maar weg voor je eigen werk */
-            border: solid 1px grey;
+            border: solid 1px #F0F0F0;
         }
 
         /* Voor MOBIEL */
