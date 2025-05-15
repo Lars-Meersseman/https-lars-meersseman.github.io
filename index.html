@@ -107,7 +107,7 @@ input[type=checkbox]:checked ~ label > img {
 #titel {
     font-family: Futura, sans-serif;
     top: 0;
-    z-index: 1;
+    z-index: 1002; /* Above hamburger menu */
     color: #333;
     cursor: text;
     font-size: 8vh;
@@ -115,7 +115,8 @@ input[type=checkbox]:checked ~ label > img {
     margin-top: 2vh;
     background-color: #F0F0F0;
     position: fixed;
-    transition: transform 0.3s ease, opacity 0.3s ease;
+    transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+    will-change: transform, opacity;
 }
 .hamburger-checkbox {
     display: none;
@@ -178,7 +179,7 @@ input[type=checkbox]:checked ~ label > img {
     height: 100vh;
     background: #F0F0F0;
     display: flex;
-	font-family:futura;
+    font-family: Futura, sans-serif;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -294,6 +295,7 @@ input[type=checkbox]:checked ~ label > img {
 }
 .tab-content {
     height: calc(100% - 41px);
+    display: flex;
     align-items: center;
     justify-content: center;
 }
@@ -314,6 +316,7 @@ input[type=checkbox]:checked ~ label > img {
     background: linear-gradient(to bottom, rgba(0, 0, 0, 0.1), transparent);
     pointer-events: none;
 }
+@media only screen and (max-width: 600px) {
     .tab {
         width: 85%;
         height: 180px;
@@ -326,7 +329,17 @@ input[type=checkbox]:checked ~ label > img {
     .tab-container {
         padding: 80px 0;
     }
-  
+}
+@media only screen and (min-width: 1051px) {
+    .tab {
+        max-width: 500px;
+        height: 250px;
+        margin: -60px auto;
+    }
+    .tab-header {
+        font-size: 1.4rem;
+    }
+}
 .extraplace {
     height: 100vh;
     width: 1vw;
@@ -346,17 +359,7 @@ input[type=checkbox]:checked ~ label > img {
     .col-9 {width: 75%;}
     .col-10 {width: 83.33%;}
     .col-11 {width: 91.66%;}
-    .col-12 {width: 100%;}  
-	
-	
-	.tab {
-        max-width: 500px;
-        height: 250px;
-        margin: -60px auto;
-    }
-    .tab-header {
-        font-size: 1.4rem;
-    }
+    .col-12 {width: 100%;}
 }
 	</style>
 <title>Comic work</title>
@@ -437,8 +440,7 @@ input[type=checkbox]:checked ~ label > img {
                 <div class="tab-content">
                     <img src="images/project3.jpg" alt="Placeholder project" class="images">
                 </div>
-            </div>
-			</a>
+            </div></a>
             <div class="extraplace"></div>
         </div>
     </div>
@@ -448,23 +450,39 @@ document.addEventListener('DOMContentLoaded', () => {
     const tabContainer = document.querySelector('.tab-container');
     const tabs = document.querySelectorAll('.tab');
     const title = document.querySelector('#titel');
+    const video = document.querySelector('video');
 
-    if (!tabContainer || !tabs.length || !title) {
-        console.error('Required elements missing:', { tabContainer, tabs, title });
+    if (!tabContainer || !tabs.length || !title || !video) {
+        console.error('Required elements missing:', { tabContainer, tabs, title, video });
         return;
+    }
+
+    function updateTitle() {
+        const scrollTop = window.scrollY;
+        const videoRect = video.getBoundingClientRect();
+        const videoBottom = video.offsetTop + videoRect.height;
+
+        // Stay static until video is scrolled past
+        if (scrollTop < videoBottom) {
+            title.style.transform = `translateY(0px)`;
+            title.style.webkitTransform = `translateY(0px)`;
+            title.style.opacity = 1;
+        } else {
+            // Animate after video is out of view
+            const scrollPastVideo = scrollTop - videoBottom;
+            const translateY = -Math.min(200, scrollPastVideo);
+            const titleOpacity = Math.max(0, 1 - scrollPastVideo / 200);
+            title.style.transform = `translateY(${translateY}px)`;
+            title.style.webkitTransform = `translateY(${translateY}px)`;
+            title.style.opacity = titleOpacity;
+        }
+        // console.log('Title update:', { scrollTop, videoBottom, translateY, titleOpacity });
     }
 
     function updateTabs() {
         const viewportHeight = window.innerHeight;
         const scrollTop = window.scrollY;
 
-        // Title animation
-        const translateY = Math.max(-200, -scrollTop * 1);
-        const titleOpacity = Math.max(0, 1 - scrollTop / 150);
-        title.style.transform = `translateY(${translateY}px)`;
-        title.style.opacity = titleOpacity;
-
-        // Tab animations
         let closestTab = null;
         let minDistanceFromCenter = Infinity;
         let closestTabIndex = -1;
@@ -499,28 +517,40 @@ document.addEventListener('DOMContentLoaded', () => {
             if (tab === closestTab) {
                 tab.classList.add('tab--centered');
                 tab.style.transform = `rotateX(0deg) scale(${scale}) translateY(150px)`;
+                tab.style.webkitTransform = `rotateX(0deg) scale(${scale}) translateY(150px)`;
             } else {
                 let translateYValue = isAbove ? -150 : 300;
                 tab.style.transform = `rotateX(-40deg) scale(${scale}) translateY(${translateYValue}px)`;
+                tab.style.webkitTransform = `rotateX(-40deg) scale(${scale}) translateY(${translateYValue}px)`;
             }
 
             tab.style.opacity = opacity;
         });
     }
 
-    // Scroll and resize handlers
+    // Scroll and touch handlers
     let scrolling = false;
-    window.addEventListener('scroll', () => {
+    function handleScroll() {
         if (!scrolling) {
             scrolling = true;
             requestAnimationFrame(() => {
+                updateTitle();
                 updateTabs();
                 scrolling = false;
             });
         }
+    }
+
+    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('touchmove', handleScroll, { passive: true });
+    window.addEventListener('resize', () => {
+        updateTitle();
+        updateTabs();
     });
-    window.addEventListener('resize', updateTabs);
-    updateTabs(); // Initial update
+
+    // Initial updates
+    updateTitle();
+    updateTabs();
 });
 </script>
 </body>
