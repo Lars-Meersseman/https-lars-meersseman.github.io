@@ -64,9 +64,11 @@
             clear: both;
             display: table;
         }
- @font-face {
-                font-family: Futura;
-                src: local("fonts/Futura-Bold-font.ttf");
+@font-face {
+    font-family: Futura;
+    src: url("fonts/Futura-Bold-font.ttf") format("truetype");
+    font-weight: bold;
+    font-style: normal;
 }
         [class*="col-"] {
             float: left;
@@ -86,8 +88,7 @@
             .col-m-7 {width: 58.33%;}
             .col-m-8 {width: 66.66%;}
             .col-m-9 {width: 75%;}
-            .col-m-10 {width: 83.33%;}
-            .col-m-11 {width: 91.66%;}
+            .col-m-10 {width: 83. noexcept: 91.66%;}
             .col-m-12 {width: 100%;}
 			
 input[type=checkbox] {
@@ -122,6 +123,8 @@ input[type=checkbox]:checked ~ label > img {
     margin-left: 4vw;
     margin-top: 2vh;
     background-color: #F0F0F0;
+    position: fixed; /* Fix to viewport for independent movement */
+    transition: transform 0.3s ease, opacity 0.3s ease; /* Smooth transform and fade */
 }
             .hamburger-checkbox {
                 display: none;
@@ -223,15 +226,17 @@ input[type=checkbox]:checked ~ label > img {
                 height: 1px;
                 background-color: #838383;
             }
-            .social-icons {
-                position: absolute;
-                width: 15px;
-                height: 40px;
-                margin-top: 80vh;
-                margin-left: -25vw;
-                display: flex;
-                gap: 100px;
-            } 
+   			.social-icons {
+   				position: relative;
+    			display: flex;
+    			justify-content: center;
+    			gap: 20px;
+    			margin-top: 20px;
+			}
+			.social-icons img {
+ 			    width: 24px;
+   				height: 24px;
+			}
 			#photo1{
 				width:100%;
 				height:50vh;
@@ -430,8 +435,6 @@ input[type=checkbox]:checked ~ label > img {
             .col-11 {width: 91.66%;}
             .col-12 {width: 100%;}
 
-			
-			
             /* DESKTOP code binnen deze accolades van het @media stuk */
 			}
 	</style>
@@ -529,10 +532,18 @@ input[type=checkbox]:checked ~ label > img {
 document.addEventListener('DOMContentLoaded', () => {
     const tabContainer = document.querySelector('.tab-container');
     const tabs = document.querySelectorAll('.tab');
+    const title = document.querySelector('#titel');
 
     function updateTabs() {
         const containerRect = tabContainer.getBoundingClientRect();
         const containerCenter = containerRect.top + containerRect.height / 2;
+        const scrollTop = tabContainer.scrollTop;
+
+        // Move title upward and fade out based on scroll position
+        const translateY = Math.max(-200, -scrollTop * 1); // Move up at 1:1 scroll speed, cap at -200px
+        const opacity = Math.max(0, 1 - scrollTop / 150); // Fade out over 150px of scroll
+        title.style.transform = `translateY(${translateY}px)`;
+        title.style.opacity = opacity;
 
         tabs.forEach((tab, index) => {
             const tabRect = tab.getBoundingClientRect();
@@ -558,11 +569,19 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Update tabs bij scroll en resize
-    tabContainer.addEventListener('scroll', updateTabs);
+    let scrolling = false;
+    tabContainer.addEventListener('scroll', () => {
+        if (!scrolling) {
+            scrolling = true;
+            requestAnimationFrame(() => {
+                updateTabs();
+                scrolling = false;
+            });
+        }
+    });
     window.addEventListener('resize', updateTabs);
     updateTabs(); // Initiële update
 });
-	
 </script>
 </body>
 </html>
