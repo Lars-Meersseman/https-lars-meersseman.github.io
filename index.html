@@ -5,11 +5,7 @@
 <meta charset="UTF-8">
 	<style>
 	@charset "UTF-8";
-        /* http://meyerweb.com/eric/tools/css/reset/ 
-           v2.0 | 20110126
-           License: none (public domain)
-        */
-
+        /* CSS Reset */
         html, body, div, span, applet, object, iframe,
         h1, h2, h3, h4, h5, h6, p, blockquote, pre,
         a, abbr, acronym, address, big, cite, code,
@@ -30,13 +26,13 @@
             font: inherit;
             vertical-align: baseline;
         }
-        /* HTML5 display-role reset for older browsers */
         article, aside, details, figcaption, figure, 
         footer, header, hgroup, menu, nav, section {
             display: block;
         }
         body {
             background-color: #F0F0F0;
+            min-height: 400vh; /* Ensure enough scrollable space */
         }
         ol, ul {
             list-style: none;
@@ -54,8 +50,7 @@
             border-spacing: 0;
         }
 
-        /* EINDE CSS RESET */
-        /* BEGIN RESPONSIVE OPZET */
+        /* Responsive Setup */
         * {
             box-sizing: border-box;
         }
@@ -73,11 +68,10 @@
         [class*="col-"] {
             float: left;
             width: 100%;
-            /* Ter demonstratie hebben kolommen een border, doe maar weg voor je eigen werk */
-            border: solid 1px #F0F0F0;
+            border: solid 1px grey; /* Remove for production */
         }
 
-        /* Voor MOBIEL */
+        /* Mobile */
         @media only screen and (max-width: 1050px) {
             .col-m-1 {width: 8.33%;}
             .col-m-2 {width: 16.66%;}
@@ -88,34 +82,31 @@
             .col-m-7 {width: 58.33%;}
             .col-m-8 {width: 66.66%;}
             .col-m-9 {width: 75%;}
-            .col-m-10 {width: 83. noexcept: 91.66%;}
+            .col-m-10 {width: 83.33%;}
+            .col-m-11 {width: 91.66%;}
             .col-m-12 {width: 100%;}
 			
 input[type=checkbox] {
-  display: none;
+    display: none;
 }
-
 .container img {
-  transition: transform 0.25s ease;
-  cursor: pointer;
-	margin-top:10vh;
-	
-			}
-			#text1{
-			margin-top:40vh;
-			font-size:2vh;
-			font-family: futura;
-			text-align:center;
-			
-		}
-			
-input[type=checkbox]:checked ~ label > img {
-  transform: scale(1.5);
-  cursor: pointer;
+    transition: transform 0.25s ease;
+    cursor: pointer;
+    margin-top: 10vh;
 }
-			#titel {
-    font-family: "futura";
-    top: 0px;
+#text1 {
+    margin-top: 14vh;
+    font-size: 2vh;
+    font-family: Futura, sans-serif;
+    text-align: center;
+}
+input[type=checkbox]:checked ~ label > img {
+    transform: scale(1.5);
+    cursor: pointer;
+}
+#titel {
+    font-family: Futura, sans-serif;
+    top: 0;
     z-index: 1;
     color: #333;
     cursor: text;
@@ -123,231 +114,195 @@ input[type=checkbox]:checked ~ label > img {
     margin-left: 4vw;
     margin-top: 2vh;
     background-color: #F0F0F0;
-    position: fixed; /* Fix to viewport for independent movement */
-    transition: transform 0.3s ease, opacity 0.3s ease; /* Smooth transform and fade */
+    position: fixed;
+    transition: transform 0.3s ease, opacity 0.3s ease;
 }
-            .hamburger-checkbox {
-                display: none;
-            }
-
-            .hamburger-label {
-                position: fixed;
-                top: 20px;
-                right: 20px;
-                width: 30px;
-                height: 20px;
-                cursor: pointer;
-                z-index: 1001;
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-            }
-
-            .line {
-                width: 8px;
-                height: 25px;
-                background-color: #333;
-                transition: all 0.3s ease;
-                position: absolute;
-            }
-
-            .line1 {
-                transform: rotate(-45deg) translate(-31px, 15px);
-                transform-origin: center;
-            }
-
-            .line3 {
-                transform: rotate(45deg) translate(6px, 21.5px);
-                transform-origin: center;
-            }
-
-            .hamburger-checkbox:checked + .hamburger-label .line1 {
-                transform: rotate(-45deg) translate(-35.2px, -3px);
-                transform-origin: left;
-                width: 8px;
-                height: 20px;
-                margin-left: 4.5px;
-                margin-top: 6px;
-                background-color: #333;
-            }
-            .containertitel {
-                width: 100%;
-                height: 20vh;
-                border: 1px solid red;
-                position: absolute;
-            }
-.hamburger-checkbox:checked + .hamburger-label .line3 {
-                transform: rotate(45deg) translate(10px, 23px);
-                transform-origin: left;
-                width: 8px;
-                height: 25px;
-                background-color: #333;
-            }
-
-            .menu-items {
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100vh;
-                background: #F0F0F0;
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-                transform: translateY(-100%);
-                transition: transform 0.5s ease;
-                z-index: 1000;
-            }
-
-            .hamburger-checkbox:checked ~ .menu-items {
-                transform: translateY(0);
-            }
-
-            .menu-items li {
-                list-style: none;
-                margin: 40px 0;
-            }
-            .menu-items a {
-                cursor: text;
-                text-decoration: none;
-                color: #333;
-                font-size: 28px;
-                font-weight: bold;
-                transition: color 0.3s ease;
-            }
-
-            .menu-items a:hover {
-                color: #666;
-            }
-            .thinline {
-                width: 50vw;
-                height: 1px;
-                background-color: #838383;
-            }
-   			.social-icons {
-   				position: relative;
-    			display: flex;
-    			justify-content: center;
-    			gap: 20px;
-    			margin-top: 20px;
-			}
-			.social-icons img {
- 			    width: 24px;
-   				height: 24px;
-			}
-			#photo1{
-				width:100%;
-				height:50vh;
-				margin-top:-2.8vh;
-				background-color: aqua;
-				
-			}
-			#photo2{
-				width:100%;
-				height:50vh;
-				margin-top:-2.8vh;
-				background-color: aqua;
-				
-			}
-			#initialsL{
-				color:#333;
-				font-family: futura;
-				font-size:10vh;
-				margin-top:5vh;
-				text-align: right;
-				
-			}
-			#initialsS{
-				color:#333;
-				font-family: futura;
-				font-size:10vh;
-				margin-top:65vh;
-				text-align: left;
-				
-			}
-			.project{
-				width:100%;
-			}
-			.titelproject{
-				text-align: center;
-				font-family: futura;
-				font-size:3vh;color:#333;
-				margin-top:10vh;
-				
-			}
-			#text{
-				margin-top:20vh;
-				font-family:futura;
-				text-align: center;
-			}
-			.tab-container {
-    width: 100%;
-    height: 100vh;
-    -webkit-perspective: 1000px; /* Vendor prefix voor iOS */
-    perspective: 1000px;
-    overflow-y: scroll; /* Gebruik scroll i.p.v. auto voor iOS */
-    -webkit-overflow-scrolling: touch; /* Soepel scrollen op iOS */
-    scroll-snap-type: y proximity;
-    -webkit-scroll-snap-type: y proximity; /* Fallback voor oudere Safari */
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-    padding: 50px 0;
-    background: linear-gradient(to bottom, #e0e0e0, #f5f5f5);
-    -webkit-tap-highlight-color: transparent; /* Voorkom highlight bij tikken */
-}
-
-.tab-container::-webkit-scrollbar {
+.hamburger-checkbox {
     display: none;
 }
-
-.tab {
-    width: 90%; /* Kleiner voor iPhone-schermen */
-    max-width: 400px;
-    height: 250px; /* Kleiner voor betere pasvorm */
-    margin: 15px auto;
-    background: #fff;
-    border-radius: 12px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Lichtere schaduw voor prestaties */
-    -webkit-transform: rotateX(20deg) translateZ(0); /* Vendor prefix */
-    transform: rotateX(20deg) translateZ(0);
-    -webkit-transition: -webkit-transform 0.6s ease, opacity 0.6s ease; /* iOS compatibiliteit */
-    transition: transform 0.6s ease, opacity 0.6s ease;
-    scroll-snap-align: center;
+.hamburger-label {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 30px;
+    height: 20px;
+    cursor: pointer;
+    z-index: 1001;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.line {
+    width: 8px;
+    height: 25px;
+    background-color: #333;
+    transition: all 0.3s ease;
+    position: absolute;
+}
+.line1 {
+    transform: rotate(-45deg) translate(-31px, 15px);
+    transform-origin: center;
+}
+.line3 {
+    transform: rotate(45deg) translate(6px, 21.5px);
+    transform-origin: center;
+}
+.hamburger-checkbox:checked + .hamburger-label .line1 {
+    transform: rotate(-45deg) translate(-35.2px, -3px);
+    transform-origin: left;
+    width: 8px;
+    height: 20px;
+    margin-left: 4.5px;
+    margin-top: 6px;
+    background-color: #333;
+}
+.containertitel {
+    width: 100%;
+    height: 20vh;
+    border: 1px solid red;
+    position: absolute;
+}
+.hamburger-checkbox:checked + .hamburger-label .line3 {
+    transform: rotate(45deg) translate(10px, 23px);
+    transform-origin: left;
+    width: 8px;
+    height: 25px;
+    background-color: #333;
+}
+.menu-items {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: #F0F0F0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transform: translateY(-100%);
+    transition: transform 0.5s ease;
+    z-index: 1000;
+}
+.hamburger-checkbox:checked ~ .menu-items {
+    transform: translateY(0);
+}
+.menu-items li {
+    list-style: none;
+    margin: 40px 0;
+}
+.menu-items a {
+    cursor: pointer;
+    text-decoration: none;
+    color: #333;
+    font-size: 28px;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+.menu-items a:hover {
+    color: #666;
+}
+.thinline {
+    width: 50vw;
+    height: 1px;
+    background-color: #838383;
+}
+.social-icons {
     position: relative;
-    overflow: hidden;
-    -webkit-backface-visibility: hidden; /* Voorkom flikkering */
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 20px;
+}
+.social-icons img {
+    width: 24px;
+    height: 24px;
+}
+#photo1, #photo2 {
+    width: 100%;
+    height: 50vh;
+    margin-top: -2.8vh;
+    background-color: aqua;
+}
+#initialsL {
+    color: #333;
+    font-family: Futura, sans-serif;
+    font-size: 10vh;
+    margin-top: 5vh;
+    text-align: right;
+}
+#initialsS {
+    color: #333;
+    font-family: Futura, sans-serif;
+    font-size: 10vh;
+    margin-top: 65vh;
+    text-align: left;
+}
+.project {
+    width: 100%;
+}
+.titelproject {
+    text-align: center;
+    font-family: Futura, sans-serif;
+    font-size: 3vh;
+    color: #333;
+    margin-top: 10vh;
+}
+#text {
+    margin-top: 10vh;
+    font-family: Futura, sans-serif;
+    text-align: center;
+}
+.tab-container {
+    width: 100%;
+    -webkit-perspective: 1500px;
+    perspective: 1500px;
+    padding: 100px 0;
+    background: linear-gradient(to bottom, #e0e0e0, #f5f5f5);
+    -webkit-tap-highlight-color: transparent;
+}
+.tab {
+    width: 80%;
+    max-width: 400px;
+    height: 200px;
+    margin: -50px auto;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+    -webkit-transform: rotateX(-40deg);
+    transform: rotateX(-40deg);
+    -webkit-transition: transform 0.5s ease, opacity 0.5s ease;
+    transition: transform 0.5s ease, opacity 0.5s ease;
+    position: relative;
+    -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
 }
-
+.tab--centered {
+    z-index: 10;
+}
 .tab-header {
-    background: linear-gradient(to bottom, #f8f8f8, #e8e8e8);
-    padding: 12px;
+    background: #f5f5f5;
+    padding: 10px;
     font-family: Futura, sans-serif;
     font-size: 1.2rem;
     font-weight: bold;
     color: #333;
-    border-bottom: 1px solid #ccc;
+    border-bottom: 1px solid #ddd;
     text-align: center;
 }
-
 .tab-content {
-    padding: 0;
-    height: calc(100% - 44px); /* Aangepast voor header-hoogte */
-    display: flex;
+    height: calc(100% - 41px);
     align-items: center;
     justify-content: center;
 }
-
 .images {
     width: 100%;
-    height: 100%;
+    height: 30vh;
     object-fit: cover;
-    border-radius: 0 0 12px 12px;
-    -webkit-user-drag: none; /* Voorkom slepen van afbeeldingen */
+    border-radius: 0 0 10px 10px;
+    -webkit-user-drag: none;
 }
-
 .tab::before {
     content: '';
     position: absolute;
@@ -355,88 +310,54 @@ input[type=checkbox]:checked ~ label > img {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.15), transparent);
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.1), transparent);
     pointer-events: none;
 }
-
+@media only screen and (max-width: 600px) {
     .tab {
         width: 85%;
-        height: 200px; /* Nog kleiner voor kleine iPhones */
-        margin: 10px auto;
+        height: 180px;
+        margin: -40px auto;
     }
-
     .tab-header {
         font-size: 1rem;
         padding: 8px;
     }
-
     .tab-container {
-        padding: 30px 0;
+        padding: 80px 0;
     }
-
+}
 @media only screen and (min-width: 1051px) {
     .tab {
         max-width: 500px;
-        height: 300px;
+        height: 250px;
+        margin: -60px auto;
+    }
+    .tab-header {
+        font-size: 1.4rem;
     }
 }
-.tab-content {
-    padding: 0;
-    height: calc(100% - 50px); /* Hoogte minus header */
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.extraplace {
+    height: 100vh;
+    width: 1vw;
+}
 }
 
-.images {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* Afbeelding vult tab */
-    border-radius: 0 0 12px 12px;
+/* Desktop */
+@media only screen and (min-width: 1051px) {
+    .col-1 {width: 8.33%;}
+    .col-2 {width: 16.66%;}
+    .col-3 {width: 25%;}
+    .col-4 {width: 33.33%;}
+    .col-5 {width: 41.66%;}
+    .col-6 {width: 50%;}
+    .col-7 {width: 58.33%;}
+    .col-8 {width: 66.66%;}
+    .col-9 {width: 75%;}
+    .col-10 {width: 83.33%;}
+    .col-11 {width: 91.66%;}
+    .col-12 {width: 100%;}
 }
-
-.tab::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.2), transparent); /* Lichte reflectie */
-    pointer-events: none;
-}
-
-        .images {
-            border-radius: 10px;
-            width: 69.8vw;
-            margin-top: -3vh;
-            margin-left: -3.5vw;
-        }
-
-        .extraplace {
-            height: 10vh;
-            width: 1vw;
-            margin-top: 300vh;
-        }
-}
-
-        /* Voor DESKTOP */
-        @media only screen and (min-width: 1051px) {
-            .col-1 {width: 8.33%;}
-            .col-2 {width: 16.66%;}
-            .col-3 {width: 25%;}
-            .col-4 {width: 33.33%;}
-            .col-5 {width: 41.66%;}
-            .col-6 {width: 50%;}
-            .col-7 {width: 58.33%;}
-            .col-8 {width: 66.66%;}
-            .col-9 {width: 75%;}
-            .col-10 {width: 83.33%;}
-            .col-11 {width: 91.66%;}
-            .col-12 {width: 100%;}
-
-            /* DESKTOP code binnen deze accolades van het @media stuk */
-			}
 	</style>
 <title>Comic work</title>
 </head>
@@ -444,12 +365,9 @@ input[type=checkbox]:checked ~ label > img {
 <body>
 	<div class="row">
 		<div class="col-m-9">
-			
-			<div id="titel">LS-Studio</div> 
-		
+			<div id="titel" aria-label="LS-Studio logo">LS-Studio</div> 
 		</div>
 		<div class="col-m-3">
-			
 			<div id="containerhamburger">
         <nav class="navbar">
             <input type="checkbox" class="hamburger-checkbox" id="hamburger-checkbox">
@@ -458,13 +376,13 @@ input[type=checkbox]:checked ~ label > img {
                 <span class="line line3"></span>
             </label>
             <ul class="menu-items">
-                <li><a href="Tabs.html">Portfolio</a></li>
+                <li><a href="Landing.html">Portfolio</a></li>
                 <div class="thinline"></div>
                 <li><a href="about-us.html">About Us</a></li>
                 <div class="thinline"></div>
                 <li><a href="contact.html">Contact</a></li>
                 <div class="social-icons">
-                    <img src="icons/insta.png" alt="instagram">
+                    <img src="icons/insta.png" alt="Instagram">
                     <img src="icons/x.webp" alt="X">
                 </div>
             </ul>
@@ -475,8 +393,7 @@ input[type=checkbox]:checked ~ label > img {
 <div class="row">
 	<div class="col-m-1"></div>
 	<div class="col-m-10">
-			<h2 id="text1">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus egestas placerat nibh, eu facilisis ligula viverra a. Donec feugiat felis vel ultricies efficitur. Cras bibendum nec nisi vitae semper. Cras fringilla lectus vel dui commodo, eget efficitur risus iaculis. In hendrerit mollis gravida. Aenean posuere justo cursus sem posuere, sed <br>bibendum velit volutpat. Sed feugiat efficitur sem ut.
-			</h2>
+		<h2 id="text1">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus egestas placerat nibh, eu facilisis ligula viverra a. Donec feugiat felis vel ultricies efficitur. Cras bibendum nec nisi vitae semper. Cras fringilla lectus vel dui commodo, eget efficitur risus iaculis. In hendrerit mollis gravida. Aenean posuere justo cursus sem posuere, sed bibendum velit volutpat. Sed feugiat efficitur sem ut.</h2>
 	</div>
 	<div class="col-m-1"></div>
 </div>
@@ -492,39 +409,36 @@ input[type=checkbox]:checked ~ label > img {
     <div class="col-m-12">
         <div class="tab-container">
             <a href="comic.html"><div class="tab">
-                <div class="tab-header">Project 1</div>
+                <div class="tab-header">Comic</div>
                 <div class="tab-content">
-                    <img src="werken/LP/VoorkantCoverSeppe.png" alt="Project 1" class="images">
+                    <img src="werken/LP/VoorkantCoverSeppe.png" alt="Comic project" class="images">
                 </div>
-            </div>
-			</a>
+            </div></a>
             <a href="lp.html"><div class="tab">
-                <div class="tab-header">Project 2</div>
+                <div class="tab-header">Parody LP</div>
                 <div class="tab-content">
-                    <img src="werken/Comic/comic.png" alt="Project 2" class="images">
+                    <img src="werken/Comic/comic.png" alt="Parody LP project" class="images">
+                </div>
+            </div></a>
+            <a href="comic.html"><div class="tab">
+                <div class="tab-header">Photography</div>
+                <div class="tab-content">
+                    <img src="werken/Fotografie/DSC_0649.JPG" alt="Photography project" class="images">
+                </div>
+            </div></a>
+            <a href="comic.html"><div class="tab">
+                <div class="tab-header">Placeholder 1</div>
+                <div class="tab-content">
+                    <img src="images/project3.jpg" alt="Placeholder project" class="images">
+                </div>
+            </div></a>
+            <div class="tab">
+                <div class="tab-header">Placeholder 2</div>
+                <div class="tab-content">
+                    <img src="images/project3.jpg" alt="Placeholder project" class="images">
                 </div>
             </div>
-			</a>
-            <a href="fotografie.html"><div class="tab">
-                <div class="tab-header">Project 3</div>
-                <div class="tab-content">
-                    <img src="werken/Fotografie/DSC_0649.JPG" alt="Project 3" class="images">
-                </div>
-           		</div>
-			</a>
-			<a href="comic.html"><div class="tab">
-                <div class="tab-header">Project 3</div>
-                <div class="tab-content">
-                    <img src="images/project3.jpg" alt="Project 3" class="images">
-                </div>
-				</div>
-			</a>
-			<div class="tab">
-                <div class="tab-header">Project 3</div>
-                <div class="tab-content">
-                    <img src="images/project3.jpg" alt="Project 3" class="images">
-                </div>
-            </div>
+            <div class="extraplace"></div>
         </div>
     </div>
 </div>
@@ -534,43 +448,68 @@ document.addEventListener('DOMContentLoaded', () => {
     const tabs = document.querySelectorAll('.tab');
     const title = document.querySelector('#titel');
 
-    function updateTabs() {
-        const containerRect = tabContainer.getBoundingClientRect();
-        const containerCenter = containerRect.top + containerRect.height / 2;
-        const scrollTop = tabContainer.scrollTop;
+    if (!tabContainer || !tabs.length || !title) {
+        console.error('Required elements missing:', { tabContainer, tabs, title });
+        return;
+    }
 
-        // Move title upward and fade out based on scroll position
-        const translateY = Math.max(-200, -scrollTop * 1); // Move up at 1:1 scroll speed, cap at -200px
-        const opacity = Math.max(0, 1 - scrollTop / 150); // Fade out over 150px of scroll
+    function updateTabs() {
+        const viewportHeight = window.innerHeight;
+        const scrollTop = window.scrollY;
+
+        // Title animation
+        const translateY = Math.max(-200, -scrollTop * 1);
+        const titleOpacity = Math.max(0, 1 - scrollTop / 150);
         title.style.transform = `translateY(${translateY}px)`;
-        title.style.opacity = opacity;
+        title.style.opacity = titleOpacity;
+
+        // Tab animations
+        let closestTab = null;
+        let minDistanceFromCenter = Infinity;
+        let closestTabIndex = -1;
 
         tabs.forEach((tab, index) => {
             const tabRect = tab.getBoundingClientRect();
             const tabCenter = tabRect.top + tabRect.height / 2;
-            const distanceFromCenter = (tabCenter - containerCenter) / window.innerHeight;
+            const screenCenter = viewportHeight / 2;
+            const distanceFromCenter = Math.abs(tabCenter - screenCenter);
 
-            // Bereken rotatie en vertaling
-            const rotation = distanceFromCenter * 60; // Max 60 graden rotatie
-            const translateZ = -Math.abs(distanceFromCenter) * 200; // Diepte-effect
-            const opacity = 1 - Math.abs(distanceFromCenter) * 0.5; // Lichte vervaging
-
-            // Pas transformaties toe
-            tab.style.transform = `rotateX(${rotation}deg) translateZ(${translateZ}px)`;
-            tab.style.opacity = Math.max(0.5, opacity);
-
-            // Voeg centered klasse toe voor de meest centrale tab
-            if (Math.abs(distanceFromCenter) < 0.2) {
-                tab.classList.add('tab--centered');
-            } else {
-                tab.classList.remove('tab--centered');
+            if (distanceFromCenter < minDistanceFromCenter) {
+                minDistanceFromCenter = distanceFromCenter;
+                closestTab = tab;
+                closestTabIndex = index;
             }
+        });
+
+        tabs.forEach((tab, index) => {
+            const tabRect = tab.getBoundingClientRect();
+            const tabCenter = tabRect.top + tabRect.height / 2;
+            const screenCenter = viewportHeight / 2;
+            const distanceFromCenter = Math.abs(tabCenter - screenCenter);
+
+            const scale = Math.max(1, 1 - distanceFromCenter / viewportHeight);
+            const opacity = Math.max(0.7, 1 - distanceFromCenter / viewportHeight);
+
+            tab.classList.remove('tab--centered');
+
+            const isAbove = index < closestTabIndex;
+            const isBelow = index > closestTabIndex;
+
+            if (tab === closestTab) {
+                tab.classList.add('tab--centered');
+                tab.style.transform = `rotateX(0deg) scale(${scale}) translateY(150px)`;
+            } else {
+                let translateYValue = isAbove ? -150 : 300;
+                tab.style.transform = `rotateX(-40deg) scale(${scale}) translateY(${translateYValue}px)`;
+            }
+
+            tab.style.opacity = opacity;
         });
     }
 
-    // Update tabs bij scroll en resize
+    // Scroll and resize handlers
     let scrolling = false;
-    tabContainer.addEventListener('scroll', () => {
+    window.addEventListener('scroll', () => {
         if (!scrolling) {
             scrolling = true;
             requestAnimationFrame(() => {
@@ -580,7 +519,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
     window.addEventListener('resize', updateTabs);
-    updateTabs(); // Initiële update
+    updateTabs(); // Initial update
 });
 </script>
 </body>
