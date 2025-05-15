@@ -116,6 +116,11 @@ input[type=checkbox]:checked ~ label > img {
     margin-top: 2vh;
     background-color: #F0F0F0;
 }
+			#minitext{
+				font-family:futura;
+				font-size: 2.5vw;
+				text-align: center;
+			}
             .hamburger-checkbox {
                 display: none;
             }
@@ -177,6 +182,7 @@ input[type=checkbox]:checked ~ label > img {
 
             .menu-items {
                 position: fixed;
+				font-family:futura;
                 top: 0;
                 left: 0;
                 width: 100%;
