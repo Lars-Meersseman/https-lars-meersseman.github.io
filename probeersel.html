@@ -1,15 +1,11 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <title>Probeersel</title>
-    <style>
-    @charset "UTF-8";
-        /* http://meyerweb.com/eric/tools/css/reset/ 
-           v2.0 | 20110126
-           License: none (public domain)
-        */
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta charset="UTF-8">
+	<style>
+	@charset "UTF-8";
+        /* CSS Reset */
         html, body, div, span, applet, object, iframe,
         h1, h2, h3, h4, h5, h6, p, blockquote, pre,
         a, abbr, acronym, address, big, cite, code,
@@ -30,19 +26,13 @@
             font: inherit;
             vertical-align: baseline;
         }
-        /* HTML5 display-role reset for older browsers */
         article, aside, details, figcaption, figure, 
         footer, header, hgroup, menu, nav, section {
             display: block;
         }
         body {
             background-color: #F0F0F0;
-            line-height: 1;
-            margin: 0;
-            height: 200vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            min-height: 400vh;
         }
         ol, ul {
             list-style: none;
@@ -60,8 +50,7 @@
             border-spacing: 0;
         }
 
-        /* EINDE CSS RESET */
-        /* BEGIN RESPONSIVE OPZET */
+        /* Responsive Setup */
         * {
             box-sizing: border-box;
         }
@@ -70,54 +59,20 @@
             clear: both;
             display: table;
         }
-
+@font-face {
+    font-family: Futura;
+    src: url("fonts/Futura-Bold-font.ttf") format("truetype");
+    font-weight: bold;
+    font-style: normal;
+}
         [class*="col-"] {
             float: left;
             width: 100%;
-            /* Ter demonstratie hebben kolommen een border, doe maar weg voor je eigen werk */
-            border: solid 1px grey;
+            border: solid 1px #F0F0F0; /* Remove for production */
         }
 
-        @keyframes pulse {
-            0%, 100% {
-                transform: translate(-50%, -50%) scale(1);
-            }
-            50% {
-                transform: translate(-50%, -50%) scale(1.2);
-            }
-        }
-
-        @keyframes pulse-line {
-            0%, 100% {
-                transform: translate(-50%, -50%) scaleY(1);
-            }
-            50% {
-                transform: translate(-50%, -50%) scaleY(1.1);
-            }
-        }
-        @keyframes stretch-and-spin {
-            0% {
-                transform: translate(-50%, -50%) rotate(0deg);
-                width: 20px;
-                height: 20px;
-                border-radius: 50%;
-            }
-            50% {
-                transform: translate(-50%, -50%) rotate(90deg);
-                width: 2px;
-                height: 15px;
-                border-radius: 0;
-            }
-            100% {
-                transform: translate(-50%, -50%) rotate(0deg);
-                width: 2px;
-                height: 30px;
-                border-radius: 0;
-            }
-        }
-
-        /* Voor MOBIEL */
-        @media only screen and (max-width: 600px) {
+        /* Mobile */
+        @media only screen and (max-width: 1050px) {
             .col-m-1 {width: 8.33%;}
             .col-m-2 {width: 16.66%;}
             .col-m-3 {width: 25%;}
@@ -131,68 +86,60 @@
             .col-m-11 {width: 91.66%;}
             .col-m-12 {width: 100%;}
 
-            /* MOBIELE code binnen deze accolades van het @media stuk */
-            * {
-                margin: 0;
-                padding: 0;
-                box-sizing: border-box;
+            input[type=checkbox] {
+                display: none;
             }
-
-            body {
-                font-family: "Poppins", sans-serif;
+            #text1 {
+                margin-top: 20vh;
+                font-size: 2.5vh;
+                font-family: Futura, sans-serif;
+                text-align: center;
+                white-space: normal;
+                line-height: 1.6;
+                max-width: 90%;
+                margin-left: auto;
+                margin-right: auto;
             }
-
-            @font-face {
-                font-family: Futura;
-                src: local("fonts/Futura-Bold-font.ttf");
+            #text1 span {
+                display: inline-block;
+                opacity: 0;
+                transform: translateY(20px);
+                animation: fadeSlideUp 0.8s ease-out forwards;
+                will-change: transform, opacity;
+                margin-right: 0.3em;
             }
-
-            #cursor-circle {
-                position: fixed;
-                width: 20px;
-                height: 20px;
-                background-color: #ADADAD;
-                border-radius: 50%;
-                pointer-events: none;
-                transform: translate(-50%, -50%);
-                z-index: 9999;
-                transition: width 0.3s ease, height 0.3s ease, border-radius 0.3s ease, transform 0.3s ease;
-                animation: pulse 1.5s infinite ease-in-out;
+            @keyframes fadeSlideUp {
+                from { opacity: 0; transform: translateY(20px); }
+                to { opacity: 1; transform: translateY(0); }
             }
-
-            #cursor-circle.text-select {
-                width: 3px;
-                height: 30px;
-                border-radius: 1px;
-                background-color: #ADADAD;
-                animation: stretch-and-spin 0.3s ease forwards, pulse-line 1.5s infinite ease-in-out;
-            }
-
-            .tab-header, .menu-items a, #text1, #titel, {
-                cursor: text;
-            }
-
-            body {
-                margin: 0;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                background: #F0F0F0;
-                overflow-x: hidden;
-            }
-
-            .navbar {
-                position: fixed;
+            #text1 span:nth-child(1) { animation-delay: 0.1s; }
+            #text1 span:nth-child(2) { animation-delay: 0.2s; }
+            #text1 span:nth-child(3) { animation-delay: 0.3s; }
+            #text1 span:nth-child(4) { animation-delay: 0.4s; }
+            #text1 span:nth-child(5) { animation-delay: 0.5s; }
+            #text1 span:nth-child(6) { animation-delay: 0.6s; }
+            #text1 span:nth-child(7) { animation-delay: 0.7s; }
+            #text1 span:nth-child(8) { animation-delay: 0.8s; }
+            #text1 span:nth-child(9) { animation-delay: 0.9s; }
+            #text1 span:nth-child(10) { animation-delay: 1.0s; }
+            #text1 span:nth-child(n+11) { animation-delay: 1.1s; }
+            #titel {
+                font-family: Futura, sans-serif;
                 top: 0;
-                left: 0;
-                width: 100%;
-                z-index: 1000;
+                z-index: 1002;
+                color: #333;
+                cursor: text;
+                font-size: 8vh;
+                margin-left: 4vw;
+                margin-top: 2vh;
+                background-color: #F0F0F0;
+                position: fixed;
+                transition: transform 0.5s ease-out, opacity 0.5s ease-out;
+                will-change: transform, opacity;
             }
-
             .hamburger-checkbox {
                 display: none;
             }
-
             .hamburger-label {
                 position: fixed;
                 top: 20px;
@@ -206,7 +153,6 @@
                 justify-content: center;
                 align-items: center;
             }
-
             .line {
                 width: 8px;
                 height: 25px;
@@ -214,17 +160,14 @@
                 transition: all 0.3s ease;
                 position: absolute;
             }
-
             .line1 {
                 transform: rotate(-45deg) translate(-31px, 15px);
                 transform-origin: center;
             }
-
             .line3 {
                 transform: rotate(45deg) translate(6px, 21.5px);
                 transform-origin: center;
             }
-
             .hamburger-checkbox:checked + .hamburger-label .line1 {
                 transform: rotate(-45deg) translate(-35.2px, -3px);
                 transform-origin: left;
@@ -234,12 +177,6 @@
                 margin-top: 6px;
                 background-color: #333;
             }
-            .containertitel {
-                width: 100%;
-                height: 20vh;
-                border: 1px solid red;
-                position: absolute;
-            }
             .hamburger-checkbox:checked + .hamburger-label .line3 {
                 transform: rotate(45deg) translate(10px, 23px);
                 transform-origin: left;
@@ -247,7 +184,6 @@
                 height: 25px;
                 background-color: #333;
             }
-
             .menu-items {
                 position: fixed;
                 top: 0;
@@ -256,6 +192,7 @@
                 height: 100vh;
                 background: #F0F0F0;
                 display: flex;
+                font-family: Futura, sans-serif;
                 flex-direction: column;
                 justify-content: center;
                 align-items: center;
@@ -263,24 +200,21 @@
                 transition: transform 0.5s ease;
                 z-index: 1000;
             }
-
             .hamburger-checkbox:checked ~ .menu-items {
                 transform: translateY(0);
             }
-
             .menu-items li {
                 list-style: none;
                 margin: 40px 0;
             }
             .menu-items a {
-                cursor: text;
+                cursor: pointer;
                 text-decoration: none;
                 color: #333;
                 font-size: 28px;
                 font-weight: bold;
                 transition: color 0.3s ease;
             }
-
             .menu-items a:hover {
                 color: #666;
             }
@@ -290,111 +224,87 @@
                 background-color: #838383;
             }
             .social-icons {
-                position: absolute;
-                width: 15px;
-                height: 40px;
-                margin-top: 80vh;
-                margin-left: -25vw;
+                position: relative;
                 display: flex;
-                gap: 100px;
-            } 
-.tab-container {
-            width: 100%;
-            height: 200vh;
-            perspective: 1500px;
-            overflow-y: auto;
-            scroll-snap-type: y proximity;
-            scrollbar-width: none;
-            -ms-overflow-style: none;
-            padding-top: 100px;
-            padding-bottom: 100px;
+                justify-content: center;
+                gap: 20px;
+                margin-top: 20px;
+            }
+            .social-icons img {
+                width: 24px;
+                height: 24px;
+            }
+            .tab-container {
+                width: 100%;
+                -webkit-perspective: 1500px;
+                perspective: 1500px;
+                padding: 100px 0;
+                background: linear-gradient(to bottom, #e0e0e0, #f5f5f5);
+                -webkit-tap-highlight-color: transparent;
+            }
+            .tab {
+                width: 80%;
+                max-width: 400px;
+                height: 200px;
+                margin: -50px auto;
+                background: #fff;
+                border-radius: 10px;
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+                -webkit-transform: rotateX(-40deg);
+                transform: rotateX(-40deg);
+                -webkit-transition: transform 0.5s ease, opacity 0.5s ease;
+                transition: transform 0.5s ease, opacity 0.5s ease;
+                position: relative;
+                -webkit-backface-visibility: hidden;
+                backface-visibility: hidden;
+            }
+            .tab--centered {
+                z-index: 10;
+            }
+            .tab-header {
+                background: #f5f5f5;
+                padding: 10px;
+                font-family: Futura, sans-serif;
+                font-size: 1.2rem;
+                font-weight: bold;
+                color: #333;
+                border-bottom: 1px solid #ddd;
+                text-align: center;
+            }
+            .tab-content {
+                height: calc(100% - 41px);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            .images {
+                width: 100%;
+                height: 30vh;
+                object-fit: cover;
+                border-radius: 0 0 10px 10px;
+                -webkit-user-drag: none;
+            }
+            .tab::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(to bottom, rgba(0, 0, 0, 0.1), transparent);
+                pointer-events: none;
+            }
+            .extraplace {
+                height: 100vh;
+                width: 1vw;
+            }
+            video {
+                margin-top: 5vh;
+            }
         }
 
-        .tab-container::-webkit-scrollbar {
-            display: none;
-        }
-
-        .tab {
-            width: 80%;
-            max-width: 400px;
-            height: 200px;
-            margin: -100px auto;
-            background: #fff;
-            border-radius: 10px;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
-            transform: rotateX(-40deg);
-            transition: transform 0.5s ease, opacity 0.5s ease;
-            scroll-snap-align: center;
-            position: relative;
-        }
-
-        .tab--centered {
-            z-index: 10;
-        }
-
-        .container2 {
-            height: 20vh;
-        }
-
-        .tab-header {
-            background: #f5f5f5;
-            padding: 10px;
-            font-weight: bold;
-            border-bottom: 1px solid #ddd;
-        }
-
-        .tab-content {
-            padding: 20px;
-            color: #333;
-        }
-
-        .tab::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.1), transparent);
-            pointer-events: none;
-        }
-
-        .images {
-            border-radius: 10px;
-            width: 69.8vw;
-            margin-top: -3vh;
-            margin-left: -3.5vw;
-        }
-
-        .extraplace {
-            height: 10vh;
-            width: 1vw;
-            margin-top: 100vh;
-        }
-#titel {
-    font-family: "futura";
-    position: absolute;
-    top: 0px;
-    z-index: 1;
-    color: #333;
-    cursor: text;
-    font-size: 8vh;
-    margin-left: -45vw;
-    margin-top: 4vh;
-    transition: transform 0.5s ease;
-    background-color: #F0F0F0;
-			}
-        }
-		#text1{
-			margin-top:30vh;
-			font-size:2.5vh;
-			margin-left:4vw;
-			font-family: futura;
-			position:absolute;
-			
-		}
-        /* Voor DESKTOP */
-        @media only screen and (min-width: 601px) {
+        /* Desktop */
+        @media only screen and (min-width: 1051px) {
             .col-1 {width: 8.33%;}
             .col-2 {width: 16.66%;}
             .col-3 {width: 25%;}
@@ -408,251 +318,264 @@
             .col-11 {width: 91.66%;}
             .col-12 {width: 100%;}
 
-            /* DESKTOP code binnen deze accolades van het @media stuk */
-        } 
-    </style>
+            #titel {
+                font-size: 10vh;
+                margin-left: 5vw;
+                margin-top: 3vh;
+            }
+            #text1 {
+                margin-top: 25vh;
+                font-size: 3.5vh;
+                max-width: 70%;
+                line-height: 1.8;
+            }
+            #text1 span:nth-child(1) { animation-delay: 0.15s; }
+            #text1 span:nth-child(2) { animation-delay: 0.3s; }
+            #text1 span:nth-child(3) { animation-delay: 0.45s; }
+            #text1 span:nth-child(4) { animation-delay: 0.6s; }
+            #text1 span:nth-child(5) { animation-delay: 0.75s; }
+            #text1 span:nth-child(6) { animation-delay: 0.9s; }
+            #text1 span:nth-child(7) { animation-delay: 1.05s; }
+            #text1 span:nth-child(8) { animation-delay: 1.2s; }
+            #text1 span:nth-child(9) { animation-delay: 1.35s; }
+            #text1 span:nth-child(10) { animation-delay: 1.5s; }
+            #text1 span:nth-child(n+11) { animation-delay: 1.65s; }
+            .hamburger-label, .hamburger-checkbox {
+                display: none;
+            }
+            .menu-items {
+                position: fixed;
+                top: 3vh;
+                right: 5vw;
+                width: auto;
+                height: auto;
+                background: transparent;
+                flex-direction: row;
+                gap: 30px;
+                transform: translateY(0);
+                z-index: 1001;
+            }
+            .menu-items li {
+                margin: 0;
+            }
+            .menu-items a {
+                font-size: 2.5vh;
+                color: #333;
+                transition: color 0.3s ease, transform 0.3s ease;
+            }
+            .menu-items a:hover {
+                color: #666;
+                transform: translateY(-2px);
+            }
+            .thinline {
+                display: none;
+            }
+            .social-icons {
+                gap: 15px;
+                margin-top: 0;
+            }
+            .social-icons img {
+                width: 28px;
+                height: 28px;
+                transition: transform 0.3s ease;
+            }
+            .social-icons img:hover {
+                transform: scale(1.1);
+            }
+            video {
+                max-width: 1200px;
+                margin: 10vh auto 0;
+                display: block;
+            }
+            .tab-container {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 30px;
+                padding: 80px 5vw;
+                background: #F0F0F0;
+                perspective: none;
+            }
+            .tab {
+                width: 100%;
+                max-width: 450px;
+                height: auto;
+                margin: 0;
+                background: #fff;
+                border-radius: 12px;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+                transform: none;
+                transition: transform 0.3s ease, box-shadow 0.3s ease;
+                position: relative;
+                overflow: hidden;
+            }
+            .tab:hover {
+                transform: scale(1.05);
+                box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+            }
+            .tab-header {
+                font-size: 1.6rem;
+                padding: 15px;
+            }
+            .tab-content {
+                height: 300px;
+            }
+            .images {
+                height: 100%;
+                border-radius: 0 0 12px 12px;
+            }
+            .tab::before {
+                display: none;
+            }
+            .extraplace {
+                height: 50vh;
+            }
+        }
+	</style>
+<title>LS-Studio</title>
 </head>
 
-<body>   
-    <div id="titel">LS-Studio</div>
-    <div id="containerhamburger">
-        <nav class="navbar">
-            <input type="checkbox" class="hamburger-checkbox" id="hamburger-checkbox">
-            <label for="hamburger-checkbox" class="hamburger-label">
-                <span class="line line1"></span>
-                <span class="line line3"></span>
-            </label>
-            <ul class="menu-items">
-                <li><a href="Landing.html">Portfolio</a></li>
-                <div class="thinline"></div>
-                <li><a href="aboutus.html">About Us</a></li>
-                <div class="thinline"></div>
-                <li><a href="contact.html">Contact</a></li>
-                <div class="social-icons">
-                    <img src="icons/insta.png" alt="instagram">
-                    <img src="icons/x.webp" alt="X">
-                </div>
-            </ul>
-        </nav>
-    </div> 
+<body>
+	<div class="row">
+		<div class="col-m-9 col-9">
+			<div id="titel" aria-label="LS-Studio logo">LS-Studio</div> 
+		</div>
+		<div class="col-m-3 col-3">
+			<div id="containerhamburger">
+				<nav class="navbar">
+					<input type="checkbox" class="hamburger-checkbox" id="hamburger-checkbox">
+					<label for="hamburger-checkbox" class="hamburger-label">
+						<span class="line line1"></span>
+						<span class="line line3"></span>
+					</label>
+					<ul class="menu-items">
+						<li><a href="index.html">Portfolio</a></li>
+						<div class="thinline"></div>
+						<li><a href="about-us.html">About Us</a></li>
+						<div class="thinline"></div>
+						<li><a href="contact.html">Contact</a></li>
+						<div class="social-icons">
+							<img src="icons/insta.png" alt="Instagram">
+							<img src="icons/x.webp" alt="X">
+						</div>
+					</ul>
+				</nav>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-m-1 col-1"></div>
+		<div class="col-m-10 col-10">
+			<h2 id="text1">At LS-Studio, it’s all about shape, color, and impact. We’re a graphic design studio with a deep passion for our craft. Whether it’s a bold logo, a clean visual identity, or a creative campaign – we make sure your brand stands out. What makes us different? We blend skill with fresh ideas and smart design. No templates or one-size-fits-all. Just custom visuals that truly fit your brand. We value clarity, speed, and quality. No complicated talk – just modern, effective design that works.</h2>
+		</div>
+		<div class="col-m-1 col-1"></div>
+	</div>
+	<div class="row">
+		<div class="col-m-12 col-12">
+			<video autoplay loop muted style="width:100%;">
+				<source src="animations/fullcomp.mp4" type="video/mp4">
+				Your browser does not support the animation :/
+			</video>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-m-12 col-12">
+			<div class="tab-container">
+				<a href="comic.html"><div class="tab">
+					<div class="tab-header">Comic</div>
+					<div class="tab-content">
+						<img src="werken/Comic/comic.png" alt="Comic project" class="images">
+					</div>
+				</div></a>
+				<a href="lp.html"><div class="tab">
+					<div class="tab-header">Parody LP</div>
+					<div class="tab-content">
+						<img src="werken/LP/VoorkantCoverSeppe.png" alt="Parody LP project" class="images">
+					</div>
+				</div></a>
+				<a href="comic.html"><div class="tab">
+					<div class="tab-header">Photography</div>
+					<div class="tab-content">
+						<img src="werken/Fotografie/DSC_0649.JPG" alt="Photography project" class="images">
+					</div>
+				</div></a>
+				<a href="comic.html"><div class="tab">
+					<div class="tab-header">Placeholder 1</div>
+					<div class="tab-content">
+						<img src="images/project3.jpg" alt="Placeholder project" class="images">
+					</div>
+				</div></a>
+				<a href="comic.html"><div class="tab">
+					<div class="tab-header">Placeholder 2</div>
+					<div class="tab-content">
+						<img src="images/project3.jpg" alt="Placeholder project" class="images">
+					</div>
+				</div></a>
+				<div class="extraplace"></div>
+			</div>
+		</div>
+	</div>
+	<script>
+	document.addEventListener('DOMContentLoaded', () => {
+		const title = document.querySelector('#titel');
+		const video = document.querySelector('video');
+		const text1 = document.querySelector('#text1');
 
-    <div class="tab-container">
-		
-		
-		
-		
-		<h2 id="text1">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus egestas placerat nibh, eu facilisis ligula viverra a. Donec feugiat felis vel ultricies efficitur. Cras bibendum nec nisi vitae semper. Cras fringilla lectus vel dui commodo, eget efficitur risus iaculis. In hendrerit mollis gravida. Aenean posuere justo cursus sem posuere, sed <br>bibendum velit volutpat. Sed feugiat efficitur sem ut.
- </h2>
-		<video autoplay loop muted width="575" style="margin-top:55vh; width:100%;">
-          <source src="animations/fullcomp.mp4" type="video/mp4">
-          Your browser does not support the animation :/
-        </video>
-        <div class="container2"></div>
-        <a href="comic.html">
-            <div class="tab" style="z-index:1;">
-                <div class="tab-header">Comic</div>
-                <div class="tab-content">
-                    <img class="images" src="display/comic.png" alt="Comic pagina">
-                </div>
-            </div>
-        </a>
-        <a href="comic.html">
-            <div class="tab" style="z-index:2;">
-                <div class="tab-header">Parody LP</div>
-                <div class="tab-content">
-                    <img class="images" src="display/cover.png" alt="Comic pagina">
-                </div>
-            </div>
-        </a>
-        <a href="comic.html">
-            <div class="tab" style="z-index:3;">
-                <div class="tab-header">Live Photography</div>
-                <div class="tab-content">
-                    <img class="images" src="display/photos.png" alt="Comic pagina">
-                </div>
-            </div>
-        </a>
-        <a href="#">
-            <div class="tab" style="z-index:4;">
-                <div class="tab-header">Placeholder</div>
-                <div class="tab-content">
-                    <img class="images" src="display/placeholder.png" alt="Comic pagina">
-                </div>
-            </div>
-        </a>
-        <a href="#">
-            <div class="tab" style="z-index:4;">
-                <div class="tab-header">Placeholder</div>
-                <div class="tab-content">
-                    <img class="images" src="display/placeholder.png" alt="Comic pagina">
-                </div>
-            </div>
-        </a>
-        <a href="#">
-            <div class="tab" style="z-index:4;">
-                <div class="tab-header">Placeholder</div>
-                <div class="tab-content">
-                    <img class="images" src="display/placeholder.png" alt="Comic pagina">
-                </div>
-            </div>
-        </a>
-        <a href="#">
-            <div class="tab" style="z-index:4;">
-                <div class="tab-header">Laatste tab</div>
-                <div class="tab-content">
-                </div>
-            </div>
-        </a>
-        <div class="extraplace"></div>
-    </div>
+		if (!title || !video || !text1) {
+			console.error('Required elements missing:', { title, video, text1 });
+			return;
+		}
 
-    <script>
-       document.addEventListener('DOMContentLoaded', () => {
-    const container = document.querySelector('.tab-container');
-    const tabs = document.querySelectorAll('.tab');
-    const introSection = document.querySelector('.intro-section');
-    const title = document.querySelector('#titel');
-    const navbar = document.querySelector('.navbar');
-    const cursorCircle = document.querySelector('#cursor-circle');
-    const video = document.querySelector('video'); // Selecteer het video element
+		// Split text1 into spans for staggered animation, preserving spaces
+		const words = text1.textContent.trim().split(/\s+/);
+		text1.textContent = '';
+		words.forEach((word, index) => {
+			const span = document.createElement('span');
+			span.textContent = word;
+			text1.appendChild(span);
+			if (index < words.length - 1) {
+				text1.appendChild(document.createTextNode(' '));
+			}
+		});
 
-    // Wacht tot de video is afgelopen om de intro-section te verbergen en de animatie te starten
-    video.addEventListener('ended', () => {
-        introSection.classList.add('intro-section--hidden');
-        document.body.style.backgroundColor = '#F0F0F0';
-        container.classList.add('slide-up'); // Start de schuif-animatie voor de container
-        title.classList.add('titel-visible'); // Laat de titel meeschuiven
-        navbar.classList.add('navbar--visible');
-        cursorCircle.style.display = 'block';
-        tabs.forEach(tab => tab.classList.add('tab--visible'));
-    });
+		function updateTitle() {
+			const scrollTop = window.scrollY;
+			const videoRect = video.getBoundingClientRect();
+			const videoBottom = video.offsetTop + videoRect.height;
 
-    // Debounce functie om scroll-gebeurtenissen te beperken
-    let isScrolling = false;
-    const debounceScroll = (callback) => {
-        if (!isScrolling) {
-            isScrolling = true;
-            requestAnimationFrame(() => {
-                callback();
-                isScrolling = false;
-            });
-        }
-    };
+			if (scrollTop < videoBottom) {
+				title.style.transform = `translateY(0px)`;
+				title.style.webkitTransform = `translateY(0px)`;
+				title.style.opacity = 1;
+			} else {
+				const scrollPastVideo = scrollTop - videoBottom;
+				const translateY = -Math.min(200, scrollPastVideo);
+				const titleOpacity = Math.max(0, 1 - scrollPastVideo / 200);
+				title.style.transform = `translateY(${translateY}px)`;
+				title.style.webkitTransform = `translateY(${translateY}px)`;
+				title.style.opacity = titleOpacity;
+			}
+		}
 
-    // Scroll logica
-    const handleScroll = () => {
-        const scrollTop = container.scrollTop;
-        const containerHeight = container.clientHeight;
-        const scrollHeight = container.scrollHeight;
-        const threshold = 50;
+		// Scroll and touch handlers
+		let scrolling = false;
+		function handleScroll() {
+			if (!scrolling) {
+				scrolling = true;
+				requestAnimationFrame(() => {
+					updateTitle();
+					scrolling = false;
+				});
+			}
+		}
 
-        // Vind de bovenste tab die momenteel in beeld is
-        let topmostTab = null;
-        let minTop = Infinity;
+		window.addEventListener('scroll', handleScroll);
+		window.addEventListener('touchmove', handleScroll, { passive: true });
+		window.addEventListener('resize', updateTitle);
 
-        tabs.forEach(tab => {
-            const tabTop = tab.offsetTop - scrollTop;
-            if (tabTop < minTop && tabTop > -tab.clientHeight) {
-                minTop = tabTop;
-                topmostTab = tab;
-            }
-        });
-
-        // Pas de positie van de titel aan
-        if (topmostTab) {
-            const titleHeight = title.offsetHeight;
-            const tabTop = topmostTab.offsetTop - scrollTop;
-            const titleBottom = titleHeight + 20 * window.innerHeight / 100;
-
-            // Als de bovenste tab de onderkant van de titel nadert, duw de titel omhoog
-            if (tabTop < titleBottom + 20) {
-                const pushUpDistance = titleBottom - tabTop + 20;
-                title.style.transform = `translateY(-${pushUpDistance}px)`;
-            } else {
-                title.style.transform = 'translateY(0)';
-            }
-        } else {
-            title.style.transform = 'translateY(0)';
-        }
-
-        // Detecteer het einde van de scroll en reset de titel
-        if (scrollHeight - scrollTop - containerHeight < threshold) {
-            title.style.transform = 'translateY(0)';
-        }
-
-        // Bestaande logica voor tab centering
-        let closestTab = null;
-        let minDistanceFromCenter = Infinity;
-        let closestTabIndex = -1;
-
-        tabs.forEach((tab, index) => {
-            const tabTop = tab.offsetTop - scrollTop;
-            const tabCenter = tabTop + tab.clientHeight / 2;
-            const screenCenter = containerHeight / 2;
-            const distanceFromCenter = Math.abs(tabCenter - screenCenter);
-
-            if (distanceFromCenter < minDistanceFromCenter) {
-                minDistanceFromCenter = distanceFromCenter;
-                closestTab = tab;
-                closestTabIndex = index;
-            }
-        });
-
-        tabs.forEach((tab, index) => {
-            const tabTop = tab.offsetTop - scrollTop;
-            const tabCenter = tabTop + tab.clientHeight / 2;
-            const screenCenter = containerHeight / 2;
-            const distanceFromCenter = Math.abs(tabCenter - screenCenter);
-
-            const scale = Math.max(1, 1 - distanceFromCenter / containerHeight);
-            const opacity = Math.max(1, 1 - distanceFromCenter / containerHeight);
-
-            tab.classList.remove('tab--centered');
-
-            const isAbove = index < closestTabIndex;
-            const isBelow = index > closestTabIndex;
-
-            if (tab === closestTab) {
-                tab.classList.add('tab--centered');
-                tab.style.transform = `rotateX(0deg) scale(${scale}) translateY(150px)`;
-            } else {
-                let translateYValue = 0;
-                if (isAbove) {
-                    translateYValue = -150;
-                } else if (isBelow) {
-                    translateYValue = 300;
-                }
-                tab.style.transform = `rotateX(-40deg) scale(${scale}) translateY(${translateYValue}px)`;
-            }
-
-            tab.style.opacity = opacity;
-        });
-    };
-
-    // Gebruik debounce voor de scroll-eventlistener
-    container.addEventListener('scroll', () => {
-        debounceScroll(handleScroll);
-    });
-
-    container.scrollTop = 0;
-});
-
-// Cursor circle
-const circle = document.getElementById('cursor-circle');
-document.addEventListener('mousemove', (e) => {
-    circle.style.left = e.clientX + 'px';
-    circle.style.top = e.clientY + 'px';
-
-    const target = e.target;
-    const computedStyle = window.getComputedStyle(target);
-    const cursorStyle = computedStyle.cursor;
-
-    if (cursorStyle === 'text') {
-        circle.classList.add('text-select');
-    } else {
-        circle.classList.remove('text-select');
-    }
-});
-    </script>
+		// Initial update
+		updateTitle();
+	});
+	</script>
 </body>
 </html>
