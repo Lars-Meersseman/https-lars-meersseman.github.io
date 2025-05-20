@@ -129,7 +129,11 @@ input[type=checkbox] {
 #text1 span:nth-child(13) { animation-delay: 1.3s; }
 #text1 span:nth-child(14) { animation-delay: 1.4s; }
 #text1 span:nth-child(15) { animation-delay: 1.5s; }
-#text1 span:nth-child(n+16) { animation-delay: 1.6s; } /* Catch remaining words */
+#text1 span:nth-child(16) { animation-delay: 1.6s; }
+#text1 span:nth-child(17) { animation-delay: 1.7s; }
+#text1 span:nth-child(18) { animation-delay: 1.8s; }
+#text1 span:nth-child(19) { animation-delay: 1.9s; }
+#text1 span:nth-child(n+20) { animation-delay: 2s; } /* Catch remaining words */
 input[type=checkbox]:checked ~ label > img {
     transform: scale(1.5);
     cursor: pointer;
