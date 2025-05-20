@@ -363,7 +363,9 @@ input[type=checkbox]:checked ~ label > img {
     .tab-container {
         padding: 80px 0;
     }
-  
+  #video1{
+				display:none;
+			}
 
 
 			
@@ -382,7 +384,7 @@ input[type=checkbox]:checked ~ label > img {
     .col-10 {width: 83.33%;}
     .col-11 {width: 91.66%;}
   	.col-12 {width: 100%;}
-}  
+ 
 	.tab {
         max-width: 500px;
         height: 250px;
@@ -398,3 +400,4 @@ input[type=checkbox]:checked ~ label > img {
 			#video2{
 				display:none;
 			}
+} 
