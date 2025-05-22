@@ -66,7 +66,7 @@
         }
 
         /* Mobile */
-        @media only screen and (max-width: 850px) {
+        @media only screen and (max-width: 600px) {
             .col-m-1 {width: 8.33%;}
             .col-m-2 {width: 16.66%;}
             .col-m-3 {width: 25%;}
@@ -375,7 +375,7 @@ input[type=checkbox]:checked ~ label > img {
 			
 
 /* Desktop */
-@media only screen and (min-width: 851px) {
+@media only screen and (min-width: 601px) {
     .col-1 {width: 8.33%;}
     .col-2 {width: 16.66%;}
     .col-3 {width: 25%;}
