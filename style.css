@@ -147,8 +147,6 @@ input[type=checkbox]:checked ~ label > img {
     font-size: 8vh;
     margin-left: 4vw;
     margin-top: 2vh;
-    background-color: #F0F0F0;
-    position: fixed;
     transition: transform 0.5s ease-out, opacity 0.5s ease-out;
     will-change: transform, opacity;
 }
